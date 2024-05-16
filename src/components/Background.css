@@ -1,0 +1,302 @@
+body {
+  background: black;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.place1 {
+  z-index: 3;
+  position: relative;
+  font-weight: 500;
+  letter-spacing: 0.2cap;
+  top: -50%;
+  left: 99%;
+  font-size: 2em;
+}
+.description1 {
+  z-index: 3;
+  color: rgba(0, 0, 0, 0.578);
+  position: relative;
+  font-size: 1.6em;
+  font-weight: 500;
+  letter-spacing: 0.3cap;
+  top: -25%;
+  left: 55%;
+}
+.icon-container {
+  width: 300px;
+  height: 300px;
+  left: 40%;
+  position: absolute;
+}
+.icon-container img {
+  z-index: -1;
+  height: 300px;
+  width: 400px;
+  max-height: 300px;
+  max-width: 400px;
+  left: 55%;
+  top: 5%;
+  position: relative;
+  animation: float 6s ease-in-out infinite;
+}
+.cloud-container {
+  position: absolute;
+  float: left;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+}
+.cloud1 {
+  background: url("../assets/pngimg.com - cloud_24.png");
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-repeat: no-repeat;
+  top: 10%;
+  animation: move 60s ease-in-out infinite;
+}
+
+.cloud2 {
+  background: url("http://pngimg.com/uploads/cloud/cloud_PNG24.png");
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 30%;
+  background-repeat: no-repeat;
+  animation: move 50s ease-in-out infinite;
+}
+
+.cloud3 {
+  /*TODO make it fixed at the bottom*/
+  bottom: 0px;
+  background: url("../assets/cloud3.png");
+  top: 40%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  animation: float 5s infinite;
+}
+.sun-container {
+  position: absolute;
+  bottom: 1%;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+}
+.icon1-container {
+  height: 350px;
+  width: 300px;
+  float: right;
+}
+.icon1-container img {
+  z-index: -1;
+  height: 350px;
+  width: 550px;
+  float: right;
+  position: relative;
+  animation: rotate 30s ease-in-out infinite;
+}
+
+.sun1 {
+  background: url("../assets/pngimg.com - sun_PNG13423.png");
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 30%;
+  background-repeat: no-repeat;
+  animation: move1 30s ease-in-out infinite;
+}
+.sun3 {
+  background: url("../assets/pngimg.com - sun_PNG13412.png");
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 92%;
+  left: 79%;
+  background-repeat: no-repeat;
+  animation: float 3s ease-in-out infinite;
+}
+.place2, .place3 {
+  font-weight: 500;
+  letter-spacing: 0.2cap;
+  font-size: 2em;
+  z-index: 3;
+  position: relative;
+  top: -55%;
+  right: 10%;
+}
+.description2, .description3 {
+  z-index: 3;
+  position: relative;
+  color: rgba(0, 0, 0, 0.578);
+  font-size: 1.6em;
+  font-weight: 500;
+  letter-spacing: 0.3cap;
+  top: -33.5%;
+  right: 53%;
+}
+
+section{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(
+https://media.geeksforgeeks.org/wp-content/uploads/20200828184719/rain-300x300.png);
+  animation: rain 2s linear infinite;
+  opacity: 0;
+}
+
+.icon2-container{
+  height: 350px;
+  width: 300px;
+  float: right;
+}
+.icon2-container img{
+   z-index: -1;
+  height: 300px;
+  width: 400px;
+  max-height: 300px;
+  max-width: 400px;
+  right: 80%;
+  top: 5%;
+  position: relative;
+  animation: float 6s ease-in-out infinite;
+}
+
+
+
+@keyframes rain {
+  0% {
+      background-position: 0 0;
+      opacity: 0.5;
+  }
+
+  100% {
+      background-position: 8% 80%;
+      opacity: 0.5;
+  }
+}
+
+
+
+@keyframes rotate {
+  50% {
+    transform: rotate(180deg);
+  }
+}
+@keyframes move {
+  from {
+    transform: translateX(1500px);
+  }
+  to {
+    transform: translateX(-1100px);
+  }
+}
+@keyframes move1 {
+  from {
+    transform: translateX(-1100px);
+  }
+  to {
+    transform: translateX(1500px);
+  }
+}
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-20px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
+@media screen and (max-width: 600px) {
+  .icon-container img {
+    position: fixed;
+    margin-top: 60px;
+    margin-left: -190px;
+  }
+  .description1 {
+    position: absolute;
+    font-size: 1em;
+    left: 0%;
+    top: -30%;
+  }
+  .place1 {
+    position: absolute;
+    font-size: 1em;
+    left: 0%;
+    top: -20%;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .cloud1,
+  .cloud2,
+  .cloud3 {
+    display: none;
+  }
+
+  .sun1 .sun2,
+  .sun3 {
+    display: none;
+  }
+  .rain1{
+    display: none;
+  }
+}
+@media screen and (max-width: 600px) {
+  .description1,
+  .description2,
+  .place1,
+  .place2 {
+    font-size: 1.2em;
+  }
+}
+@media screen and (max-width: 500px) {
+  .icon1-container img {
+    position: absolute;
+    top: -190%;
+    right: 0%;
+  }
+  .icon2-container img {
+    position: absolute;
+    top: -190%;
+    right: 0%;
+  }
+  .icon1-container, .icon2-container {
+    position: relative;
+    width: 0px;
+    height: 150px;
+  }
+  .description2, .description3 {
+    position: absolute;
+    font-size: 1.1em;
+    left: auto;
+    top: -51.5%;
+    margin-right: 265px;
+  }
+  .place2, .place3 {
+    position: absolute;
+    font-size: 1.2em;
+    left: auto;
+    top: -50%;
+    margin-right: 90px;
+  }
+}
+@media screen and (min-width: 500px) and (max-width: 600px) {
+  .description1,
+  .description2,
+  .description3,
+  .place1,
+  .place2, .place3{
+    display: none;
+  }
+}

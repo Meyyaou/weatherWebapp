@@ -1,0 +1,116 @@
+.title{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.title:after {
+  display: inline-block;
+  margin: 0 0 0px 20px;
+  height: 3px;
+  content: " ";
+  text-shadow: none;
+  background-color: #302a84;
+  width: 140px;
+}
+.title:before {
+  display: inline-block;
+  margin: 0 20px 0px 0;
+  height: 3px;
+  content: " ";
+  text-shadow: none;
+  background-color: #302a84;
+  width: 140px;
+}
+
+.gr-container {
+    height: auto;
+    align-items: center;
+    align-content: center;
+    margin-top: 20px;
+    margin-bottom:150px;
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(130px, 1fr)
+    ); 
+    gap: 20px;
+    justify-content: start;
+    margin-left: 150px;
+    margin-right: 150px;
+  }
+  
+  .gr-it {
+    z-index: 2;
+    background-color: rgba(109, 148, 200, 0.518);
+    border-radius: 8px;
+    width: 100%; /* Make items take full width */
+    height: 150px; /* Set height as desired */
+    overflow: hidden;
+    font-size: 12px;
+    text-align: center;
+    padding-bottom: 8px;
+    padding-top: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    transition: transform 0.3s ease-in-out; /* Add transition for smooth animation */
+  }
+  
+  .gr-it:hover {
+    transform: rotate(5deg);
+    background-color: rgba(60, 125, 210, 0.518);
+  }
+  
+  .advice {
+    font-size: 15px;
+    font-weight: 500;
+    color: black;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+   
+  @media screen and (max-width: 768px) {
+    .gr-container {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+    .title {
+      position: absolute;
+      bottom: 72%;
+      left: 5px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .title:after,
+    .title:before {
+      display: none;
+    }
+  
+  }
+  
+  @media screen and (max-width: 490px) {
+    .gr-container {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      padding: 0 10px;
+    }
+    .title {
+      position: absolute;
+      bottom: 57.25%;
+      left: 5px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .title:after,
+    .title:before {
+      display: none;
+    }
+  
+  
+  }
+  @media screen and (min-width: 600px) and (max-width: 1024px) {
+    .title, .title:before, .title:after {
+      display: none;
+    }
+  }

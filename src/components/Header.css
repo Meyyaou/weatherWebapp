@@ -1,0 +1,152 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    height: 80px;
+    width: 100%;
+    background-color: rgba(250, 250, 250, 0.0);
+  }
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    list-style: none;
+    font-size: 18px;
+    gap: 5px;
+  }
+  .nav-logo {
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+  }
+  .nav-logo img {
+    height: 80px;
+    width: 80px;
+    margin-right: 10px;
+    margin-top: 0px;
+    margin-bottom: 6px;
+    cursor: pointer;
+  }
+  .nav-time-date {
+    padding: 0;
+    margin: 4px;
+    font-size: 13px;
+  }
+  .nav-time {
+    font-size: 25px;
+  }
+  .nav-date {
+    text-align: center;
+  }
+  .nav .nav-name {
+    color: black;
+    text-align: center;
+    padding: 3px;
+    text-decoration: none;
+    font-size: 20px;
+    line-height: 25px;
+    border-radius: 4px;
+  }
+  .nav-link1,
+  .nav-link2,
+  .nav-link3 {
+    font-size: 15px;
+    text-decoration: none;
+    color: black;
+    padding: 15px;
+    /*a small gap between abtou and other links*/
+  }
+  .nav-link1:hover,
+  .nav-link2:hover,
+  .nav-link3:hover {
+    text-decoration: underline;
+  }
+  .nav-link {
+    display: flex;
+    padding: 5px;
+  }
+  .nav-account img {
+    height: 25px;
+    width: 25px;
+    margin-top: 10px;
+    margin-right: 13px;
+  }
+  /*
+  .nav-account{
+      text-decoration: none;
+      flex-direction:column;
+      display: flex;
+      align-items: center;
+      color: black;
+      font-size: 15px; ;
+  }  TODO may delete this */
+  .nav-account:hover {
+    font-weight: 500;
+    /*TODO change this into animation later! also same for logout!*/
+  }
+  
+  .logout-btn {
+    background-color: #ffffff8e;
+    border: 1px solid #909090;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #222222;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+      "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    margin: 0;
+    outline: none;
+    padding: 10px 18px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    touch-action: manipulation;
+    transition: box-shadow 0.2s, -ms-transform 0.1s, -webkit-transform 0.1s,
+      transform 0.1s;
+    user-select: none;
+    -webkit-user-select: none;
+    width: auto;
+  }
+  
+  .logout-btn:focus-visible {
+    box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+    transition: box-shadow 0.2s;
+  }
+  
+  .logout-btn:active {
+    background-color: #f7f7f7;
+    border-color: #000000;
+    transform: scale(0.96);
+  }
+  
+  .logout-btn:disabled {
+    border-color: #dddddd;
+    color: #dddddd;
+    cursor: not-allowed;
+    opacity: 1;
+  }
+  .logout-btn:hover {
+    background-color: #e9f1517d;
+  }
+  @media screen and (max-width: 780px) {
+    .nav-about,
+    .nav-account {
+      display: none;
+    }
+    .nav-name,
+    .nav-link {
+      display: none;
+    }
+    .nav {
+      width: 100%; /*have to fix its responsiveness later TODO*/
+    }
+  }
+  /*TODO FIND A WAY TO MAKE THE HEADER YBEN PLUS
+  
+  */
+  

@@ -1,0 +1,113 @@
+.title-info {
+    width: 100%;
+    margin-left: 350px;
+    padding: 0;
+    text-align: center;
+  }
+  .title-info:after {
+    display: inline-block;
+    margin: 0 0 0px 20px;
+    height: 3px;
+    content: " ";
+    text-shadow: none;
+    background-color: #302a84;
+    width: 140px;
+  }
+  .title-info:before {
+    display: inline-block;
+    margin: 0 20px 0px 0;
+    height: 3px;
+    content: " ";
+    text-shadow: none;
+    background-color: #302a84;
+    width: 140px;
+  }
+  .small-grid-container {
+    position: relative;
+    float: right;
+    width: 400px;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Display 2 items in a row */
+    gap: 10px;
+    padding: 0px;
+    justify-content: start;
+    margin-left: 150px;
+    margin-right: 150px;
+    margin-top: 10px;
+  }
+  
+  .small-grid-item {
+    background-color: rgba(225, 225, 225, 0.564);
+    border: 0.001vw solid #00000000;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  .small-grid-item::before {
+    content: "";
+    display: block;
+    padding-top: 10%;
+  }
+  .small-grid-item p {
+    font-size: 15px;
+    font-weight: 500;
+    color: black;
+    text-align: center;
+    margin-top: 15px;
+  }
+  .small-grid-item h3 {
+    font-size: 1.2em;
+    margin: 0;
+    text-align: center;
+    padding-bottom: 0;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .small-grid-container {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust for responsiveness */
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+    .title-info:after, .title-info:before{
+      display: none;
+    }
+    .small-grid-item{
+      text-align: center;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .small-grid-container {
+      grid-template-columns: repeat(1, 1fr); /* Display one item per row */
+      padding: 0 0px;
+    }
+    .title-info:after, .title-info:before{
+      display: none;
+    }
+    .small-grid-item{
+      text-align: center;
+    }
+    .title-info {
+      position: absolute;
+      bottom: 78%;
+      left: 5px;
+      text-align: center;
+      font-weight: bold;
+      margin-left: 0px
+    }
+  
+  }
+  @media screen and (min-width: 600px) and (max-width: 1024px) {
+   .title-info:before, .title-info:after {
+      display: none;
+    }
+    .title-info {
+      position: absolute;
+      bottom: 78%;
+      left: 5px;
+      text-align: center;
+      font-weight: bold;
+      margin-left: 0px
+    }
+  }

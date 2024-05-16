@@ -1,0 +1,162 @@
+.title-sunhour {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    margin: 0;
+    height: auto;
+    padding: 0;
+    text-align: center;
+  }
+  .title-sunhour:after {
+    display: inline-block;
+    margin: 0 0 0px 20px;
+    height: 3px;
+    content: " ";
+    text-shadow: none;
+    background-color: #302a84;
+    width: 100px;
+  }
+  .title-sunhour:before {
+    display: inline-block;
+    margin: 0 20px 0px 0;
+    height: 3px;
+    content: " ";
+    text-shadow: none;
+    background-color: #302a84;
+    width: 100px;
+  }
+  
+  .sunhour-container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    position: relative; 
+    margin-left: 60px;
+    margin-right: 60px;
+    float: left;
+    border-radius: 10px;
+    padding-left: 35px;
+    padding-right: 35px;
+    background-color: rgba(60, 125, 210, 0.518);
+    width: 350px;
+    height: 220px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1px 20px;
+    left: 5%;
+  }
+  
+  .line {
+    width: 1.5px;
+    height: 100px;
+    margin: 20px 35px;
+    background-color: black;
+  }
+  
+  .sunrise,
+  .sunset {
+    width: 100px;
+    height: 100px;
+    position: relative; /* Needed for positioning sunrise-hour and sunset-hour */
+  }
+  
+  .sunrise-hour,
+  .sunset-hour {
+    font-size: 17px;
+    position: absolute;
+    bottom: 0;
+  }
+  
+  .sunrise-hour {
+    left: 68px;
+  }
+  
+  .sunset-hour {
+    right: 71px;
+  }
+  @media screen and (max-width: 400px) {
+    .sunhour-container {
+      padding: 1px 3px;
+    }
+    .line {
+      width: 1px;
+      height: 100px;
+      margin: 20px 15px;
+    }
+    .sunrise,
+    .sunset {
+      height: 30px;
+      width: 30px;
+    }
+    .sunrise-hour {
+      font-size: 8px;
+      left: 27%;
+      transform: translateX(-50%);
+    }
+  
+    .sunset-hour {
+      font-size: 8px;
+      right: 27%;
+      transform: translateX(50%);
+    }
+    .title-sunhour:after,
+    .title-sunhour:before {
+      display: none;
+    }
+  }
+  @media (max-width: 668px) {
+    .sunhour-container {
+      height: auto;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      padding: 1px 6px;
+    }
+  
+    .line {
+      width: 1px;
+      height: 100px;
+      margin-top: 30px;
+    }
+  
+    .sunrise,
+    .sunset {
+      height: 70px;
+      width: 70px;
+    }
+  
+    .sunrise-hour {
+      font-size: 12px;
+      left: 27%;
+      transform: translateX(-50%);
+    }
+  
+    .sunset-hour {
+      font-size: 12px;
+      right: 27%;
+      transform: translateX(50%);
+    }
+    .title-sunhour:after,
+    .title-sunhour:before {
+      display: none;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .title-sunhour:after,
+    .title-sunhour:before {
+      display: none;
+    }
+  }
+  
+  @media screen and (max-width: 490px) {
+    .line {
+      margin-top: 30px;
+    }
+    .title-sunhour:after,
+    .title-sunhour:before {
+      display: none;
+    }
+  }
+  
