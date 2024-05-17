@@ -39,7 +39,7 @@ const Weather = ({typeData}) => {
       {typeData=="windSpeed" &&
     <p>{weatherData.wind.speed} m/s</p>
     }{typeData=="feels_like"&&
-    <p>{weatherData.main.feels_like} °C</p>
+    <p style={{display: "none"}}>{weatherData.main.feels_like} °C</p>
     } 
         </>
       ) : (

@@ -1,7 +1,6 @@
 #predict {
   position: relative;
   float: right;
-  margin-right: 120px;
   display: flex;
   scroll-margin-top: 20vh;
 }
@@ -14,6 +13,9 @@
   right: 0;
   bottom: calc(100% + 50px); 
   text-align: right;
+  position: absolute;
+  position: absolute;
+  margin-left: 50px; 
 }
 .title-predict:after {
   display: inline-block;
@@ -50,6 +52,8 @@
   position: absolute;
   bottom: 50px; 
   right: 50px;
+  margin-left: 150px;
+  margin-right: 50px;
 }
 .btn-container {
   display: flex;
@@ -108,11 +112,13 @@
     width: 100%;
     position: relative;
     right: 0;
+    margin: auto 0;
   }
 
   #predict {
     width: 100%;
     margin: 20px auto;
+    
   }
   .title-predict{
     position: absolute;

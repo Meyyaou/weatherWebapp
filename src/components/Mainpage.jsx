@@ -30,20 +30,22 @@ function Mainpage({ user }) {
       setUserPassword(user.password);
     }
   }, [user]);
-  //TODO need to add use state par rapport au background
-  //TODO add usestatecontext for weather display?
-  const [backgroundState, setBackgroundState] = useState("cloudy");
-  const [dataAvailable, setDataAvailable] = useState(true);
+
+  const toggleDataAvailability = () => {
+    setDataAvailable(!dataAvailable);
+  };
+
+  const [dataAvailable, setDataAvailable] = useState(false);
   //TODO add to displatybluetooth button change on true to generzte weather card
   //TODO arranger l'affichage depending on the displaybluetooth btn (including generaladvice)
   return (
     <div>
-     {" "}
+      {" "}
       <Greetings user={user} />
-      {!dataAvailable && <DisplayBluetooth />}
+      {!dataAvailable && <DisplayBluetooth toggleDataAvailability={toggleDataAvailability}/>}
       {dataAvailable && (
         <div>
-          <Background backgroundState="cloudy" />
+          <Background />
           <AdviceButton user={user} />
           <main className="weather-card-container">
             <WeatherCard
@@ -53,8 +55,9 @@ function Mainpage({ user }) {
               pressure="9"
             />
           </main>
-        </div>
-      )}
+        </div>)}
+       {dataAvailable && (
+        <>
       <InfoWidget />
       <SunhourWidget />
       <div className="blank-bloc"></div>
@@ -63,12 +66,13 @@ function Mainpage({ user }) {
         <AroundConstantine />
 
         <PredictCard />
-      </div>
+      
+      </div></>)}
     </div>
   );
 }
 
 export default Mainpage;
 /**   */
-/**   
+/**
  */

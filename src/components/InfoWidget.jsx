@@ -1,7 +1,7 @@
 import React from "react";
 import "./InfoWidget.css";
 import WeatherDetails from "./WeatherDetails";
-import heat from '../assets/heater.png';
+import cloud from '../assets/cloud (1).png';
 import dew from "../assets/dew.png";
 import feel from "../assets/man.png";
 import visible from "../assets/shared-vision.png";
@@ -13,7 +13,7 @@ function InfoWidget() {
       <div className="small-grid-container">
         <div className="small-grid-item">
           <img src={dew} style={{height: "40px", width: "40px", display:"block", marginLeft: 'auto', marginRight: 'auto'}}/>
-          <h3>34 %</h3>
+          <h3>... °C</h3>
           <p>Dew Point</p>
         </div>
         <div className="small-grid-item">
@@ -22,9 +22,9 @@ function InfoWidget() {
           <p>Feels Like</p>
         </div>
         <div className="small-grid-item">
-        <img src={heat} style={{height: "40px", width: "40px", display:"block", marginLeft: 'auto', marginRight: 'auto'}}/>
-          <h3>24 °C</h3>
-          <p>Heat Index</p>
+        <img src={cloud} style={{height: "40px", width: "40px", display:"block", marginLeft: 'auto', marginRight: 'auto'}}/>
+        <WeatherDetails typeData="cloud" style={{ display:"block", marginLeft: 'auto', marginRight: 'auto'}}/>
+          <p>Clouds</p>
         </div>
         <div className="small-grid-item">
         <img src={visible} style={{height: "40px", width: "40px", display:"block", marginLeft: 'auto', marginRight: 'auto'}}/>

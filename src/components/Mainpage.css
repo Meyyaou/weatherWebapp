@@ -1,12 +1,12 @@
 html { overflow-y: scroll; overflow-x:hidden; }
 body { position: absolute; width: 100%; }
 .weather-card-container {
-    width: 50%; /* w-full */
+    width: 50%;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem; 
-    padding: 1rem 10%; /* Assuming py-4 corresponds to a vertical padding of 4rem and px-[10%] corresponds to a horizontal padding of 10% */
-    justify-content: flex-start; /* jusitify-center (typo corrected) */
+    padding: 1rem 10%; 
+    justify-content: flex-start; 
     align-items: center;
   }
   .blank-bloc{

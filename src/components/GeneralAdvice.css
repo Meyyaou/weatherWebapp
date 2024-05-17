@@ -109,7 +109,7 @@
   
   
   }
-  @media screen and (min-width: 600px) and (max-width: 1024px) {
+  @media screen and (min-width: 200px) and (max-width: 1024px) {
     .title, .title:before, .title:after {
       display: none;
     }

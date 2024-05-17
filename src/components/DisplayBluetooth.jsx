@@ -1,18 +1,17 @@
 import React from 'react'
 import "./DisplayBluetooth.css"
 
-function DisplayBluetooth() {
-  //recuperer val of display : 
-  const [isChecked, setIsChecked] = React.useState(false);
+function DisplayBluetooth({ toggleDataAvailability }) {
   const handleToggleEvent = () => {
-    setIsChecked(!isChecked);
-};
+    // Call the function passed from the parent to toggle data availability
+    toggleDataAvailability();
+  };
 
   return (
     <div className='container-btn'>
-      <button className="display-btn" onClick={handleToggleEvent} checked={isChecked}>Activate bluetooth to get started !</button>
+      <button className="display-btn" onClick={handleToggleEvent}>Plug in the cable to get started !</button>
     </div>
-  )
+  );
 }
 
 export default DisplayBluetooth

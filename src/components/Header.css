@@ -30,7 +30,7 @@
   }
   .nav-time-date {
     padding: 0;
-    margin: 4px;
+    margin: 0px;
     font-size: 13px;
   }
   .nav-time {
@@ -55,7 +55,7 @@
     text-decoration: none;
     color: black;
     padding: 15px;
-    /*a small gap between abtou and other links*/
+    
   }
   .nav-link1:hover,
   .nav-link2:hover,
@@ -65,6 +65,8 @@
   .nav-link {
     display: flex;
     padding: 5px;
+    position: absolute;
+    right: 12%;
   }
   .nav-account img {
     height: 25px;
@@ -72,15 +74,7 @@
     margin-top: 10px;
     margin-right: 13px;
   }
-  /*
-  .nav-account{
-      text-decoration: none;
-      flex-direction:column;
-      display: flex;
-      align-items: center;
-      color: black;
-      font-size: 15px; ;
-  }  TODO may delete this */
+
   .nav-account:hover {
     font-weight: 500;
     /*TODO change this into animation later! also same for logout!*/
@@ -146,7 +140,9 @@
       width: 100%; /*have to fix its responsiveness later TODO*/
     }
   }
-  /*TODO FIND A WAY TO MAKE THE HEADER YBEN PLUS
-  
-  */
-  
+ 
+  @media screen and (max-width: 1080px) and (min-width: 780px){
+    .nav-link{
+      display: none;
+    }
+  }

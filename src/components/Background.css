@@ -237,7 +237,7 @@ https://media.geeksforgeeks.org/wp-content/uploads/20200828184719/rain-300x300.p
   }
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 880px) {
   .cloud1,
   .cloud2,
   .cloud3 {
@@ -291,7 +291,7 @@ https://media.geeksforgeeks.org/wp-content/uploads/20200828184719/rain-300x300.p
     margin-right: 90px;
   }
 }
-@media screen and (min-width: 500px) and (max-width: 600px) {
+@media screen and (min-width: 500px) and (max-width: 800px) {
   .description1,
   .description2,
   .description3,

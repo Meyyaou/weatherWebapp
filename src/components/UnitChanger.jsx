@@ -21,18 +21,7 @@ export default function UnitChanger({ options, onSelect, value }) {
 
   const handleMenuItemClick = (option) => {
     setSelected(option);
-    let convertedValue = value;
-    if (option === "°F") {
-      convertedValue = value * (9 / 5) + 32;
-    } else if (option === "RH") {
-      convertedValue = value * 2.777778;
-    } else if (option === "km/h") {
-      convertedValue = value * 0.277778; // Conversion to meters per second
-    } else if (option === "ATM") {
-      convertedValue = value / 101300;
-    }
-
-    onSelect(convertedValue + " " + option);
+    onSelect(option); // Pass selected unit back to parent
     setAnchorEl(null);
   };
 

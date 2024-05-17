@@ -89,12 +89,7 @@
       text-align: center;
     }
     .title-info {
-      position: absolute;
-      bottom: 78%;
-      left: 5px;
-      text-align: center;
-      font-weight: bold;
-      margin-left: 0px
+      display: none;
     }
   
   }
