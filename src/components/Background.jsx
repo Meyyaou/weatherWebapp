@@ -5,7 +5,7 @@ import staticSun from "../assets/pngimg.com - sun_PNG13445.png";
 import staticRainCloud from "../assets/staticRainCloud.png";
 import axios from "axios";
 const Background = ({ backgroundState }) => {
-  const [feelsLike, setFeels] = useState(null); // State to hold the feels_like value
+  const [feelsLike, setFeels] = useState(30); // State to hold the feels_like value
   const [newBackgroundState, setNewBackgroundState] = useState(""); // State to hold the updated backgroundState
   useEffect(() => {
     const fetchData = async () => {
@@ -15,7 +15,7 @@ const Background = ({ backgroundState }) => {
           `
         );
 
-        setFeels(response.data);
+//        setFeels(response.data);
 
         console.log(response.data);
       } catch (error) {

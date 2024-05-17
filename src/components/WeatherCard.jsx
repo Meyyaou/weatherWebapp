@@ -27,7 +27,7 @@ function WeatherCard({ temperature, humidity, windSpeed, pressure }) {
         <p className="wind-name">Wind Speed:</p>
         <div className="windspeed-container">
           <p className="windspeed">
-            <CurrentWeatherAPI typeData="windSpeed" /> {UnitChanger.selected}
+            4.2 m/s
           </p>
         </div>
 
@@ -36,7 +36,7 @@ function WeatherCard({ temperature, humidity, windSpeed, pressure }) {
         />
         <p className="pressure-name">Pressure:</p>
         <div className="pressure-container">
-          <p className="pressure"><CurrentWeatherAPI typeData="pressure"/> </p>
+          <p className="pressure"> 952 hPa</p>
         
         </div>
       </div>

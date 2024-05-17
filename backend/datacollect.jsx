@@ -23,9 +23,9 @@ const client = new MongoClient(uri);
 async function connectToDatabase() {
   try {
     await client.connect();
-    console.log("Connecté à la base de données MongoDB");
+    console.log("Connected to MongoDB");
   } catch (err) {
-    console.error("Erreur de connexion à la base de données MongoDB :", err);
+    console.error("MongoDB connection error:", err);
   }
 }
 
@@ -36,19 +36,20 @@ async function insertData(data) {
     const [humidityStr, temperatureStr] = data.split(" ");
     const humidity = parseFloat(humidityStr);
     const temperature = parseFloat(temperatureStr);
-    console.log("here are humid and temp: ", humidity, temperature);
+    console.log("Humidity and Temperature:", humidity, temperature);
     if (isNaN(humidity) || isNaN(temperature)) {
       console.error("Failed to parse humidity or temperature from data:", data);
       return;
     }
     const result = await collection.insertOne({ humidity, temperature });
     console.log(
-      "Donnée insérée dans la base de données avec l'ID :",
+      "Data inserted into the database with ID:",
       result.insertedId
     );
+    return { humidity, temperature };
   } catch (err) {
     console.error(
-      "Erreur lors de l'insertion des données dans la base de données :",
+      "Error inserting data into the database:",
       err
     );
   }
@@ -63,11 +64,11 @@ serialPort.open((err) => {
 });
 
 serialPort.on("open", () => {
-  console.log("Connexion série établie avec succès");
+  console.log("Serial connection established successfully");
 });
 
 parser.on("data", async (data) => {
-  console.log("Données reçues de l'Arduino:", data);
+  console.log("Data received from Arduino:", data);
   const insertedData = await insertData(data);
   if (insertedData) {
     broadcast(JSON.stringify(insertedData));
@@ -77,15 +78,15 @@ parser.on("data", async (data) => {
 app.use(cors());
 
 app.get("/", (req, res) => {
-  res.send("Serveur Express en marche !");
+  res.send("Express server running!");
 });
 
 app.listen(port, () => {
-  console.log(`Le serveur Express écoute sur le port ${port}`);
+  console.log(`Express server listening on port ${port}`);
 });
+
 async function getWeatherData(req, res) {
   try {
-    await client.connect();
     const db = client.db("weather");
     const coll = db.collection("weatherData");
 
@@ -110,11 +111,11 @@ app.get("/getWeatherData", getWeatherData);
 connectToDatabase();
 module.exports = { getWeatherData };
 
-
-const server = http.createServer((req, res) => {});
+const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
 function broadcast(data) {
+  console.log("Broadcasting data:", data); // Log broadcasted data
   wss.clients.forEach((client) => {
     if (client.readyState === WebSocket.OPEN) {
       client.send(data);
@@ -123,13 +124,18 @@ function broadcast(data) {
 }
 
 wss.on("connection", (ws) => {
-  console.log("WebSocket connection is successfullyy established");
+  console.log("WebSocket connection established");
+
   ws.on("message", (message) => {
-    console.log("Received:", message);
+    console.log("Received message:", message);
+  });
+
+  ws.on("error", (error) => {
+    console.error("WebSocket error:", error);
   });
 });
 
-const portH=3001;
+const portH = 8009;
 server.listen(portH, () => {
   console.log(`HTTP server listening on port ${portH}`);
 });

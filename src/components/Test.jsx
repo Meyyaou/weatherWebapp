@@ -1,62 +1,24 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Background from "./Background";
-function Test({ weatherState }) {
+
+function Test() {
   const [weatherData, setWeatherData] = useState([]);
-  const [temperature, setTemperature] = useState(25); // Example temperature
-  const [backgroundState, setBackgroundState] = useState(""); // State to hold background state
 
-  // Function to determine background state based on temperature
-  const determineBackgroundState = (temp) => {
-    if (temp >= 30) {
-      return "sunny";
-    } else if (temp <= 10) {
-      return "rainy";
-    } else {
-      return "cloudy";
-    }
-  };
-
-  // Set background state based on temperature
   useEffect(() => {
-    const newBackgroundState = determineBackgroundState(temperature);
-    setBackgroundState(newBackgroundState);
-  }, [temperature]);
-
-  // const [convertedTemperature, setConvertedTemperature] = useState(temperature);
-  // const [convertedHumidity, setConvertedHumidity] = useState(humidity);
-  /* const handleTemperatureChange = (value) => {
-    setConvertedTemperature(value);
-  };
-  const handleHumidityChange = (value) => {
-    setConvertedHumidity(value);
-  };*/
-  /*useEffect(() => {
-    async function fetchWeatherData() {
-      try {
-        const response = await axios.get('http://localhost:3000/getWeatherData');
-        setWeatherData(response.data);
-        console.log("hre is the data : ", weatherData);
-      } catch (error) {
-        console.error('Error fetching weather data:', error);
-      }
-    }
-
-    fetchWeatherData();
-  }, []);*/
-
-  //instead of fecthing data once we need to create a connection with websocket
-  //to make the component updated in real-time:
-  useEffect(() => {
-    const ws = new WebSocket("ws://localhost:3000");
+    const ws = new WebSocket("ws://127.0.0.1:8009");
 
     ws.onopen = () => {
       console.log("WebSocket connection established");
     };
 
     ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      setWeatherData((prevData) => [...prevData, data]);
+      console.log("WebSocket message received:", event.data);
+      try {
+        const data = JSON.parse(event.data);
+        console.log("Parsed data:", data);
+        setWeatherData((prevData) => [data, ...prevData]);
+      } catch (error) {
+        console.error("Error parsing data:", error);
+      }
     };
 
     ws.onclose = () => {
@@ -71,35 +33,43 @@ function Test({ weatherState }) {
       ws.close();
     };
   }, []);
+
+  useEffect(() => {
+    console.log("Updated weatherData state:", weatherData);
+  }, [weatherData]);
+
   return (
     <div>
-
       <p className="temp-name">Temperature:</p>
       <div className="temp-container">
         <p className="temp">
-          {weatherData.length > 0 && `${weatherData[0].temperature} °C`}
+          {weatherData.length > 0 ? `${weatherData.temperature} °C` : "No data"}
         </p>
-        {/* <UnitChanger
-            options={["°C", "°F"]}
-            value={temperature}
-            onSelect={handleTemperatureChange}
-  />*/}
       </div>
       <hr style={{ backgroundColor: "white", height: "1px", border: "none" }} />
       <p className="humidity-name">Humidity:</p>
       <div className="humidity-container">
         <p className="humidity">
-          {weatherData.length > 0 && `${weatherData[0].humidity}%`}
+          {weatherData.length > 0 ? `${weatherData.humidity}%` : "No data"}
         </p>
-        {/* <UnitChanger
-            options={["%", "RH"]}
-            value={humidity}
-            onSelect={handleHumidityChange}
-/>*/}{" "}
       </div>
     </div>
   );
 }
 
 export default Test;
-/**  */
+
+/* IN CASE OF NOT USING THE WEBSOCKET:
+useEffect(() => {
+    async function fetchWeatherData() {
+      try {
+        const response = await axios.get('http://localhost:3000/getWeatherData');
+        setWeatherData(response.data);
+        console.log("hre is the data : ", weatherData);
+      } catch (error) {
+        console.error('Error fetching weather data:', error);
+      }
+    }
+
+    fetchWeatherData();
+  }, []);*/
