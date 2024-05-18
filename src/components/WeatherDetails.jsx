@@ -6,6 +6,10 @@ function WeatherDetails({ typeData }) {
     const [feelsLike, setFeelsLike] = useState(null);
     const [visibility, setVisibility] = useState(null);
     const [clouds, setClouds]= useState(null);
+    const [temperature, setTemperature]= useState(null);
+    const[humidity, setHumidity]=useState(null);
+    const[dewPoint, setDewPoint]=useState(null);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -17,6 +21,9 @@ function WeatherDetails({ typeData }) {
                 setFeelsLike(response.data.main.feels_like);
                 setVisibility(response.data.visibility);
                 setClouds(response.data.clouds.all);
+                setTemperature(response.data.main.temp);
+                setHumidity(response.data.main.humidity);
+                setDewPoint(Math.round(243.04 * (Math.log(humidity/100)+ 17.625*temperature/(243.04+temperature))/(17.625 - (Math.log(humidity/100)+ 17.625*temperature/(243.04+temperature)))));
                 console.log(response.data);
             } catch (error) {
                 console.error(error);
@@ -25,7 +32,6 @@ function WeatherDetails({ typeData }) {
 
         fetchData();
     }, []);
-
     return (
         <>
             {weatherData ? (
@@ -33,7 +39,7 @@ function WeatherDetails({ typeData }) {
                     {typeData === "visibility" && <h3 style={{textAlign:"center"}}>{visibility} m</h3>}
                     {typeData === "feels_like" && <h3 style={{textAlign:"center"}}>{feelsLike} °C</h3>}
                     {typeData === "cloud" && <h3 style={{textAlign:"center"}}>{clouds} %</h3>}
-
+                    {typeData === "dew_point" && <h3 style={{textAlign:"center"}}>{dewPoint} %</h3>}
                 </>
             ) : (
                 <p style={{ fontSize: "0.5em" }}>Loading weather data...</p>

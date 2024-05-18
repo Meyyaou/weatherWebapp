@@ -13,7 +13,7 @@ function InfoWidget() {
       <div className="small-grid-container">
         <div className="small-grid-item">
           <img src={dew} style={{height: "40px", width: "40px", display:"block", marginLeft: 'auto', marginRight: 'auto'}}/>
-          <h3>... °C</h3>
+          <WeatherDetails typeData="dew_point" style={{ display:"block", marginLeft: 'auto', marginRight: 'auto'}}/>
           <p>Dew Point</p>
         </div>
         <div className="small-grid-item">

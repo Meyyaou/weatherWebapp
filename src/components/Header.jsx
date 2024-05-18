@@ -21,7 +21,7 @@ function Header({ navigateTo }) {
         <div className="nav-logo">
           <img title="Taksentina" src={logo} alt="Logo" />
           <a href="#" title="Taksentina" className='nav-name'>
-            Taksentina
+            Taksantina
           </a>
         </div>
         <div className="nav-time-date">
