@@ -21,10 +21,14 @@ function Greetings({ user }) {
       setSelectedType(user.type);
       setUserEmail(user.email); 
       setUserPassword(user.password); 
+      console.log("the user name when user: ", userName);
     }
+    console.log("the user name when NOT user: ", userName);
+
   }, [user]);
+  //TODO make sure it displays changed username too! 
+  // even after refreshing the page !
   let greeting;
-  const username="Salim"//{userName};
   let { time } = useDate();
   if (time < 12) {
     greeting = "Good morning";
@@ -55,7 +59,7 @@ function Greetings({ user }) {
           }
         `}
         </style>
-        {greeting} {username}!
+        {greeting} {userName}!
       </h1>
     </div>
   );

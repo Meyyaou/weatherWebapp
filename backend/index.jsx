@@ -173,18 +173,32 @@ function startServer() {
   });
 
   app.get('/randomAdvice/:type', async (req, res) => {
-
+    const adviceType = req.params.type;
+    const weatherState = req.query.weatherState;
+  
+    if (!adviceType) {
+      return res.status(400).json({ message: 'Advice type is required' });
+    }
+  
     try {
-      const randomAdvice = await AdviceModel.find({
-        type: req.params.type
-      });
+      const query = { type: adviceType };
+      if (weatherState) {
+        query.weather = weatherState;
+      }
+  
+      const advices = await AdviceModel.find(query);
+      if (advices.length === 0) {
+        return res.status(404).json({ message: 'No advice found' });
+      }
+  
+      const randomAdvice = advices[Math.floor(Math.random() * advices.length)];
       res.status(200).json(randomAdvice);
     } catch (error) {
       console.error('Error fetching random advice:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
   });
-
+  
   const PORT = 5000;
   app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);

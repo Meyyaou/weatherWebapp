@@ -5,7 +5,7 @@ import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import PopupAdvice from "./PopupAdvice";
 import axios from 'axios';
 
-function AdviceButton({user}) {
+function AdviceButton({user, weatherState}) {
   const [advice, setAdvice] = useState("no advice");
   const [popupButton, setPopupButton] = useState(false);
  const [userName, setUserName] = useState('');
@@ -26,23 +26,33 @@ function AdviceButton({user}) {
       setSelectedType(user.type);
       setUserEmail(user.email); 
       setUserPassword(user.password); 
+      console.log("the user type when :", selectedType);
+
     }
+    console.log("the user type when NOT :", selectedType);
   }, [user]);
 
   
   const fetchRandomAdvice = async () => {
+    if (!selectedType) {
+      console.error('No type selected');
+      return;
+    }
+
     try {
-      const response = await axios.get(`http://localhost:5000/randomAdvice/${selectedType}`);
-      if (response.status !== 200) { // Check status directly
+      const response = await axios.get(`http://localhost:5000/randomAdvice/${selectedType}`, {
+        params: { weatherState }
+      });
+      if (response.status !== 200) {
         throw new Error('Network response was not ok');
       }
-      setAdvice(response.data);
+      setAdvice(response.data.content);
     } catch (error) {
-      console.log("type is in here : ", selectedType);
+      console.log("Type is in here:", selectedType);
       console.error('Error fetching random advice:', error);
     }
   };
-  
+
 
   
 

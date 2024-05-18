@@ -14,15 +14,13 @@ import Test from "./Test.jsx";
 function Mainpage({ user }) {
   const [userName, setUserName] = useState("");
   const [alertEnabled, setAlertEnabled] = useState(false);
-  const [newPassword, setNewPassword] = useState("");
   const [selectedType, setSelectedType] = useState("");
-  const [userId, setUserId] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
-
+  const [weatherState, setWeatherState] = useState(""); 
+  
   useEffect(() => {
     if (user) {
-      setUserId(user._id);
       setUserName(user.name);
       setAlertEnabled(user.alerts === "enable");
       setSelectedType(user.type);
@@ -30,6 +28,7 @@ function Mainpage({ user }) {
       setUserPassword(user.password);
     }
   }, [user]);
+
 
   const toggleDataAvailability = () => {
     setDataAvailable(!dataAvailable);
@@ -45,8 +44,8 @@ function Mainpage({ user }) {
       {!dataAvailable && <DisplayBluetooth toggleDataAvailability={toggleDataAvailability}/>}
       {dataAvailable && (
         <div>
-          <Background />
-          <AdviceButton user={user} />
+          <Background onWeatherStateChange={setWeatherState}/>
+          <AdviceButton user={user} weatherState={weatherState}/>
           <main className="weather-card-container">
             <WeatherCard
               temperature="..."

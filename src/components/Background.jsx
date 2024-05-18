@@ -4,8 +4,8 @@ import staticCloud from "../assets/pngimg.com - cloud_PNG6.png";
 import staticSun from "../assets/pngimg.com - sun_PNG13445.png";
 import staticRainCloud from "../assets/staticRainCloud.png";
 import axios from "axios";
-const Background = ({ backgroundState }) => {
-  const [feelsLike, setFeels] = useState(30); // State to hold the feels_like value
+const Background = ({ onWeatherStateChange }) => {
+  const [feelsLike, setFeels] = useState(); // State to hold the feels_like value
   const [newBackgroundState, setNewBackgroundState] = useState(""); // State to hold the updated backgroundState
   useEffect(() => {
     const fetchData = async () => {
@@ -14,8 +14,7 @@ const Background = ({ backgroundState }) => {
           `https://api.openweathermap.org/data/2.5/weather?lat=36.3650&lon=6.6147&appid=3258acf3613370332f9694e6267b94a5
           `
         );
-
-//        setFeels(response.data);
+     setFeels(response.data);
 
         console.log(response.data);
       } catch (error) {
@@ -26,6 +25,12 @@ const Background = ({ backgroundState }) => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    // Call the parent callback function whenever the background state changes
+    if (onWeatherStateChange) {
+      onWeatherStateChange(newBackgroundState);
+    }
+  }, [newBackgroundState, onWeatherStateChange]);
   useEffect(() => {
     // Set new background state based on feelsLike value
     if (feelsLike !== null) {
