@@ -1,36 +1,19 @@
 import React, { useState, useEffect } from "react";
+import io from "socket.io-client";
 
 function Test() {
   const [weatherData, setWeatherData] = useState([]);
 
   useEffect(() => {
-    const ws = new WebSocket("ws://127.0.0.1:8009");
+    const socket = io.connect("http://localhost:3001");
 
-    ws.onopen = () => {
-      console.log("WebSocket connection established");
-    };
+    socket.on('data', (data) => {
+      setWeatherData(data);
+    });
 
-    ws.onmessage = (event) => {
-      console.log("WebSocket message received:", event.data);
-      try {
-        const data = JSON.parse(event.data);
-        console.log("Parsed data:", data);
-        setWeatherData((prevData) => [data, ...prevData]);
-      } catch (error) {
-        console.error("Error parsing data:", error);
-      }
-    };
-
-    ws.onclose = () => {
-      console.log("WebSocket connection closed");
-    };
-
-    ws.onerror = (error) => {
-      console.error("WebSocket error:", error);
-    };
-
+    // Clean up the socket connection on component unmount
     return () => {
-      ws.close();
+      socket.disconnect();
     };
   }, []);
 
@@ -43,14 +26,14 @@ function Test() {
       <p className="temp-name">Temperature:</p>
       <div className="temp-container">
         <p className="temp">
-          {weatherData.length > 0 ? `${weatherData.temperature} °C` : "No data"}
+          {weatherData.temperature !== undefined ? `${weatherData.temperature} °C` : "No data"}
         </p>
       </div>
       <hr style={{ backgroundColor: "white", height: "1px", border: "none" }} />
       <p className="humidity-name">Humidity:</p>
       <div className="humidity-container">
         <p className="humidity">
-          {weatherData.length > 0 ? `${weatherData.humidity}%` : "No data"}
+          {weatherData.humidity !== undefined? `${weatherData.humidity}%` : "No data"}
         </p>
       </div>
     </div>
