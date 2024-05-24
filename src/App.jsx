@@ -5,7 +5,8 @@ import Signup from './components/Signup';
 import Mainpage from './components/Mainpage';
 import Account from './components/account';
 import Header from './components/Header';
-
+import About from './components/About';
+import Contact from './components/Contact';
 function App() {
   const [currentPage, setCurrentPage] = useState('login');
   const [loggedInUser, setLoggedInUser] = useState(null);
@@ -50,6 +51,8 @@ function App() {
       {currentPage === 'signup' && <Signup navigateTo={navigateTo} />}
       {currentPage === 'mainpage' && <Mainpage user={loggedInUser} navigateTo={navigateTo} />}
       {currentPage === 'account' && <Account user={loggedInUser} onClose={handleCloseAccount} />}
+      {currentPage === 'about' && <About/>}
+      {currentPage === 'contact' && <Contact />}
     </div>
   );
 }

@@ -15,6 +15,15 @@ function Header({ navigateTo }) {
     navigateTo('login'); 
   };
 
+  const handleAbout = ()=>{
+    navigateTo('about');
+  }
+  const handleHome = ()=>{
+    navigateTo('mainpage');
+  }
+  const handleContact = ()=>{
+    navigateTo("contact");
+  }
   return (
     <div>
       <header className='nav'>
@@ -29,13 +38,13 @@ function Header({ navigateTo }) {
           <div className='nav-date'>{date}</div>
         </div>
         <div className="nav-link">
-          <a className='nav-link1' href=''>
+          <a className='nav-link1' onClick={handleHome}>
             Home
           </a>
-          <a className='nav-link2' href='#'>
+          <a title="About" className='nav-link2' onClick={handleAbout}>
             About
           </a>
-          <a className='nav-link3' href='#'>
+          <a className='nav-link3' href='#' onClick={handleContact}>
             Contact
           </a>
         </div>
