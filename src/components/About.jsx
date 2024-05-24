@@ -1,6 +1,5 @@
 import React from "react";
 import "./About.css";
-import logo from "../assets/logo-weather-no-background.png";
 import Lottie from 'react-lottie';
 import pic from "../assets/team-work.json";
 function About() {

@@ -4,12 +4,22 @@ import moon from "../assets/moon.svg";
 import sunny from "../assets/sunny.svg";
 import cloudy from "../assets/cloudy.svg";
 import lightening from "../assets/lightening.svg";
+import Lottie from "react-lottie";
+import loadingImage from '../assets/loadingPredict.json';
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@mui/icons-material";
 import "./WeatherPrediction.css";
 function WeatherPrediction() {
   const [predictedWeatherData, setPredictedWeatherData] = useState(null);
   const [curr, setCurr] = useState(0);
   const [icon, setIcon] = useState(null);
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: loadingImage,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -93,7 +103,13 @@ function WeatherPrediction() {
           
           </div>
         ) : (
-          <p>Loading...</p>
+          <>
+          <Lottie 
+          options={defaultOptions}
+            style={{height: "90%", width: "100%"}}
+          />
+          <p style={{textAlign:"center"}}>Loading..</p>
+          </>
         )}
       </div>
     </>

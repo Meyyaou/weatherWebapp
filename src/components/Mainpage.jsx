@@ -29,19 +29,21 @@ function Mainpage({ user }) {
     }
   }, [user]);
 
+  const [dataAvailable, setDataAvailable] = useState(() => {
+    // Initialize from local storage or default to false
+    return localStorage.getItem("dataAvailable") === "true";
+  });
 
   const toggleDataAvailability = () => {
-    setDataAvailable(!dataAvailable);
+    setDataAvailable(true);
+    localStorage.setItem("dataAvailable", "true"); // Store in local storage
   };
-
-  const [dataAvailable, setDataAvailable] = useState(false);
-  //TODO add to displatybluetooth button change on true to generzte weather card
-  //TODO arranger l'affichage depending on the displaybluetooth btn (including generaladvice)
+  
   return (
     <div>
       {" "}
       <Greetings user={user} />
-      {!dataAvailable && <DisplayBluetooth toggleDataAvailability={toggleDataAvailability}/>}
+      {!dataAvailable && <DisplayBluetooth toggleDataAvailability={toggleDataAvailability} />}
       {dataAvailable && (
         <div>
           <Background onWeatherStateChange={setWeatherState}/>

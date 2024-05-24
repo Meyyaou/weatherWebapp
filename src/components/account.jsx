@@ -11,7 +11,7 @@ function Account({ user, onClose }) {
   const [userId, setUserId] = useState('');
   const [userEmail, setUserEmail] = useState(''); 
   const [userPassword, setUserPassword] = useState(''); 
-  
+
   useEffect(() => {
     if (user) {
       setUserId(user._id);
@@ -80,11 +80,10 @@ function Account({ user, onClose }) {
       .then((data) => {
         console.log('User data updated successfully:', data);
         setUserPassword(newPassword ? newPassword : userPassword);
-        
+        localStorage.setItem('loggedInUser', JSON.stringify(data)); 
       })
       .catch((error) => {
         console.error('Error updating user data:', error);
-        
       });
   };
 
@@ -94,7 +93,6 @@ function Account({ user, onClose }) {
         X
       </button>
       <div className="profile-section">
-        {/* Nom modifiable */}
         <div className="profile-name" onClick={handleUserNameClick}>
           <label htmlFor="userName">Name:</label>
           {isEditingName ? (
@@ -111,7 +109,6 @@ function Account({ user, onClose }) {
           )}
         </div>
       </div>
-      {/* Section Alertes */}
       <div className="alert-section">
         <label>Alerts:</label>
         <button
@@ -121,7 +118,6 @@ function Account({ user, onClose }) {
           {alertEnabled ? 'Enabled' : 'Disabled'}
         </button>
       </div>
-      {/* Section Changement de mot de passe */}
       <div className="password-section">
         <label htmlFor="oldPassword">Old Password:</label>
         <input
@@ -139,7 +135,6 @@ function Account({ user, onClose }) {
           onChange={handleNewPasswordChange}
         />
       </div>
-      {/* Section Choix de type */}
       <div className="type-section">
         <label htmlFor="type">Type:</label>
         <select id="type" value={selectedType} onChange={handleTypeChange}>
@@ -149,7 +144,6 @@ function Account({ user, onClose }) {
           <option value="driver">Driver</option>
         </select>
       </div>
-      {/* Bouton de sauvegarde */}
       <button className="button" onClick={handleSave}>
         Save
       </button>

@@ -26,7 +26,23 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
+const AdviceSchema = new mongoose.Schema({  
+  type: {
+    type: String,
+    required: true,
+  },
+  content: {
+    type: String,
+    required: true,
+  },
+  weather: {
+    type: String,
+    required: true,
+  },
+  })
+
 const User = mongoose.model('users', UserSchema);
+const AdviceModel= mongoose.model("advices", AdviceSchema);
 
 mongoose.connect('mongodb://localhost:27017/weather', {
   useNewUrlParser: true,

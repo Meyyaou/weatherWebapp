@@ -29,13 +29,13 @@ function Signup({ navigateTo }) {
 
       const result = await response.json();
       alert('User registered successfully!');
-
       
       setName('');
       setEmail('');
       setPassword('');
       setType('student');
       setAlerts('enable');
+      navigateTo('login');
     } catch (error) {
       console.error('Error registering user:', error);
       alert(error.message);
@@ -93,7 +93,7 @@ function Signup({ navigateTo }) {
             <option value="driver">Driver</option>
           </select>
         </div>
-        <div className="form-group">
+        <div className="alert">
           <label htmlFor="alerts">Alerts:</label>
           <select id="alerts" value={alerts} onChange={handleAlertsChange} required>
             <option value="enable">Enable</option>
@@ -121,3 +121,9 @@ export default Signup;
 
 
 
+
+
+
+/**useEffect(() => {
+    localStorage.setItem('dataAvailable', JSON.stringify(false));
+  }, []); */

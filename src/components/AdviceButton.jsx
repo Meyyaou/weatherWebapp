@@ -8,31 +8,19 @@ import axios from 'axios';
 function AdviceButton({user, weatherState}) {
   const [advice, setAdvice] = useState("no advice");
   const [popupButton, setPopupButton] = useState(false);
- const [userName, setUserName] = useState('');
-  const [alertEnabled, setAlertEnabled] = useState(false);
-  const [oldPassword, setOldPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
   const [selectedType, setSelectedType] = useState('');
-  const [isEditingName, setIsEditingName] = useState(false);
-  const [userId, setUserId] = useState('');
-  const [userEmail, setUserEmail] = useState(''); 
-  const [userPassword, setUserPassword] = useState(''); 
-  
+
   useEffect(() => {
-    if (user) {
-      setUserId(user._id);
-      setUserName(user.name);
-      setAlertEnabled(user.alerts === 'enable');
+    const storedUser = localStorage.getItem('loggedInUser');
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
       setSelectedType(user.type);
-      setUserEmail(user.email); 
-      setUserPassword(user.password); 
-      console.log("the user type when :", selectedType);
-
+      console.log("User type when user is present:", user.type);
+    } else {
+      console.log("No user found in local storage.");
     }
-    console.log("the user type when NOT :", selectedType);
-  }, [user]);
+  }, []);
 
-  
   const fetchRandomAdvice = async () => {
     if (!selectedType) {
       console.error('No type selected');
@@ -48,13 +36,9 @@ function AdviceButton({user, weatherState}) {
       }
       setAdvice(response.data.content);
     } catch (error) {
-      console.log("Type is in here:", selectedType);
       console.error('Error fetching random advice:', error);
     }
   };
-
-
-  
 
   return (
     <div>

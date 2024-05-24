@@ -1,5 +1,6 @@
 
 
+
 import React, { useState } from 'react';
 import './Login.css';
 
@@ -21,12 +22,9 @@ function Login({ onLoginSuccess, navigateTo }) {
       });
 
       if (response.ok) {
-        
         const userData = await response.json();
         onLoginSuccess(userData); 
-        
       } else {
-        
         setError('Invalid email or password');
       }
     } catch (error) {
@@ -41,7 +39,7 @@ function Login({ onLoginSuccess, navigateTo }) {
       <form onSubmit={handleLogin}>
         <div className="form-group">
           <label htmlFor="email">Email :</label>
-          <input 
+          <input
             type="email"
             id="email"
             value={email}
@@ -62,7 +60,6 @@ function Login({ onLoginSuccess, navigateTo }) {
         <button className="button" type="submit">Login</button>
         {error && <p className="error-message">{error}</p>}
       </form>
-      
       <p>
         Not registered yet?{' '}
         <span onClick={() => navigateTo('signup')} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
@@ -74,3 +71,6 @@ function Login({ onLoginSuccess, navigateTo }) {
 }
 
 export default Login;
+/** useEffect(() => {
+    localStorage.setItem('dataAvailable', JSON.stringify(false));
+  }, []); */

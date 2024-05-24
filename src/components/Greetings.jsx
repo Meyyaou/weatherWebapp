@@ -4,28 +4,30 @@ import { useEffect } from "react";
 import { useDate } from "./UseDate";
 function Greetings({ user }) {
   const [userName, setUserName] = useState('');
-  const [alertEnabled, setAlertEnabled] = useState(false);
-  const [oldPassword, setOldPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [selectedType, setSelectedType] = useState('');
-  const [isEditingName, setIsEditingName] = useState(false);
-  const [userId, setUserId] = useState('');
-  const [userEmail, setUserEmail] = useState(''); 
-  const [userPassword, setUserPassword] = useState(''); 
-  
-  useEffect(() => {
-    if (user) {
-      setUserId(user._id);
-      setUserName(user.name);
-      setAlertEnabled(user.alerts === 'enable');
-      setSelectedType(user.type);
-      setUserEmail(user.email); 
-      setUserPassword(user.password); 
-      console.log("the user name when user: ", userName);
-    }
-    console.log("the user name when NOT user: ", userName);
 
-  }, [user]);
+  useEffect(() => {
+    // Load user data from local storage on initial render
+    const storedUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    if (storedUser && storedUser.name) {
+      setUserName(storedUser.name);
+    }
+  }, []);
+
+  // Ensure state is up to date with local storage on every render
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const storedUser = JSON.parse(localStorage.getItem('loggedInUser'));
+      if (storedUser && storedUser.name) {
+        setUserName(storedUser.name);
+      }
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
   //TODO make sure it displays changed username too! 
   // even after refreshing the page !
   let greeting;
