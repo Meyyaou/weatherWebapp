@@ -14,7 +14,9 @@ const Background = ({ onWeatherStateChange }) => {
           `https://api.openweathermap.org/data/2.5/weather?lat=36.3650&lon=6.6147&appid=3258acf3613370332f9694e6267b94a5&units=metric
           `
         );
-     setFeels(response.data.main.feels_like);
+     //setFeels(response.data.main.feels_like);
+     //setFeels(31); 
+     //setFeels(3);
 
         console.log(response.data);
       } catch (error) {
@@ -34,7 +36,7 @@ const Background = ({ onWeatherStateChange }) => {
   useEffect(() => {
     // Set new background state based on feelsLike value
     if (feelsLike !== null) {
-      if (feelsLike >= 20 && feelsLike <30) {
+      if (feelsLike > 20) {
         setNewBackgroundState("sunny");
       } 
        if (feelsLike <= 10) {

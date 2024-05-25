@@ -30,16 +30,12 @@ function Mainpage({ user }) {
       setUserPassword(user.password);
     }
   }, [user]);
-  const [dataAvailable, setDataAvailable] = useState(() => {
-    return localStorage.getItem("dataAvailable") === "true";
-  });
+  const [dataAvailable, setDataAvailable] = useState(true);
 
   const toggleDataAvailability = () => {
     setDataAvailable(true);
     localStorage.setItem("dataAvailable", "true");
   };
-
-
   
   return (
     <div>

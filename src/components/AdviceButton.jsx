@@ -13,7 +13,8 @@ function AdviceButton({user, weatherState}) {
   const [selectedType, setSelectedType] = useState('');
   const [adviceWeather, setAdviceWeather]= useState("");
 
-  //  weatherState="sunny";
+   // weatherState="sunny";
+   // weatherState="rainy";
 
   useEffect(() => {
     const storedUser = localStorage.getItem('loggedInUser');
