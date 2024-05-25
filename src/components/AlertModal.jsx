@@ -30,8 +30,9 @@ const AlertModal = ({ user, alertEnabled }) => {
           );
           const weatherData = response.data;
           const temp = weatherData.main.temp;
+          //const temp = 34;
           const humidity = weatherData.main.humidity;
-
+          //const humidity = 99;
           if (temp >= 30 || humidity >= 80 || temp < 0 ) {
             setShowAlert(true);
             setAlertMessage(
