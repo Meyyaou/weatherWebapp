@@ -94,13 +94,6 @@
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.nav-account img {
-  height: 25px;
-  width: 25px;
-  margin-top: 10px;
-  margin-right: 13px;
-}
-
 .nav-account:hover {
   font-weight: 500;
   /*TODO change this into animation later! also same for logout!*/
@@ -162,7 +155,7 @@
   margin-right: 20px;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 880px) {
   .nav-link {
     display: none;
   }
@@ -202,10 +195,6 @@
   .nav-time-date{
     right: 0%;
   }
-}
-
-@media screen and (max-width: 780px) {
-
   .nav-name,
   .nav-link {
     display: none;

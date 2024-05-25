@@ -13,7 +13,6 @@ function Greetings({ user }) {
     }
   }, []);
 
-  // Ensure state is up to date with local storage on every render
   useEffect(() => {
     const handleStorageChange = () => {
       const storedUser = JSON.parse(localStorage.getItem('loggedInUser'));

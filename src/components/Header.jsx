@@ -2,9 +2,18 @@ import React, { useState } from "react";
 import logo from "../assets/bluetooth_avec_noir-removebg.png";
 import { useDate } from "./UseDate.jsx";
 import "./Header.css";
-import user from "../assets/user (1).png";
+import user from "../assets/User Menu.json";
+import Lottie from "react-lottie";
 
 function Header({ navigateTo }) {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: user,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
   const { date, time } = useDate();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -14,20 +23,22 @@ function Header({ navigateTo }) {
 
   const handleLogout = () => {
     navigateTo("login");
+    setMenuOpen(false);
   };
 
   const handleAbout = () => {
     navigateTo("about");
+    setMenuOpen(false);
   };
 
   const handleHome = () => {
     navigateTo("mainpage");
-
+    setMenuOpen(false);
   };
 
   const handleContact = () => {
     navigateTo("contact");
-
+    setMenuOpen(false);
   };
 
   const toggleMenu = () => {
@@ -63,7 +74,20 @@ function Header({ navigateTo }) {
               className="nav-account"
               onClick={handleAccountClick}
             >
-              {menuOpen ? 'Account' : <img src={user} alt="avatar_account" />}
+              {menuOpen ? (
+                "Account"
+              ) : (
+                <Lottie
+                  style={{
+                    height: "43px",
+                    width: "43px",
+                    marginTop: "0px",
+                    marginRight: "13px",
+                    cursor: "pointer"
+                  }}
+                  options={defaultOptions}
+                />
+              )}
             </a>
             <button className="logout-btn" onClick={handleLogout}>
               Logout

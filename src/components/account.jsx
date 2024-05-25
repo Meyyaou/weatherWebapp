@@ -81,6 +81,7 @@ function Account({ user, onClose }) {
         console.log('User data updated successfully:', data);
         setUserPassword(newPassword ? newPassword : userPassword);
         localStorage.setItem('loggedInUser', JSON.stringify(data)); 
+        alert('Changes have been saved successfully.');
       })
       .catch((error) => {
         console.error('Error updating user data:', error);

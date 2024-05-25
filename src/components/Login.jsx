@@ -1,35 +1,32 @@
-
-
-
-import React, { useState } from 'react';
-import './Login.css';
+import React, { useState } from "react";
+import "./Login.css";
 
 function Login({ onLoginSuccess, navigateTo }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/login', {
-        method: 'POST',
+      const response = await fetch("http://localhost:5000/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
       });
 
       if (response.ok) {
         const userData = await response.json();
-        onLoginSuccess(userData); 
+        onLoginSuccess(userData);
       } else {
-        setError('Invalid email or password');
+        setError("Invalid email or password");
       }
     } catch (error) {
-      console.error('Error logging in:', error);
-      setError('Something went wrong. Please try again.');
+      console.error("Error logging in:", error);
+      setError("Something went wrong. Please try again.");
     }
   };
 
@@ -57,12 +54,17 @@ function Login({ onLoginSuccess, navigateTo }) {
             required
           />
         </div>
-        <button className="button" type="submit">Login</button>
+        <button className="button" type="submit">
+          Login
+        </button>
         {error && <p className="error-message">{error}</p>}
       </form>
       <p>
-        Not registered yet?{' '}
-        <span onClick={() => navigateTo('signup')} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+        Not registered yet?{" "}
+        <span
+          onClick={() => navigateTo("signup")}
+          style={{ cursor: "pointer", textDecoration: "underline" }}
+        >
           Create an account
         </span>
       </p>

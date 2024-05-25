@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import moon from "../assets/moon.svg";
-import sunny from "../assets/sunny.svg";
-import cloudy from "../assets/cloudy.svg";
-import lightening from "../assets/lightening.svg";
+import sunnyCloudy from "../assets/sun&cloud.png";
+import sunny from "../assets/sun.png";
+import cloudy from "../assets/clouud.png";
+import lightening from "../assets/lightening.png";
+import rain from "../assets/rain.png";
+
 import Lottie from "react-lottie";
-import loadingImage from '../assets/loadingPredict.json';
+import loadingImage from "../assets/loadingPredict.json";
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@mui/icons-material";
 import "./WeatherPrediction.css";
 function WeatherPrediction() {
@@ -17,8 +19,8 @@ function WeatherPrediction() {
     autoplay: true,
     animationData: loadingImage,
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-    }
+      preserveAspectRatio: "xMidYMid slice",
+    },
   };
   useEffect(() => {
     const fetchData = async () => {
@@ -57,11 +59,13 @@ function WeatherPrediction() {
     return dateTime.toLocaleString("en-US", options);
   };
   const getIcon = (temp) => {
-    if (temp < 10) {
-      return moon;
-    } else if (temp >= 10 && temp < 20) {
+    if (temp <= 5) {
+      return rain;
+    } else if (temp >= 10 && temp < 15) {
       return cloudy;
-    } else if (temp >= 20 && temp < 30) {
+    } else if (temp >= 15 && temp <= 20) {
+      return sunnyCloudy;
+    } else if (temp > 20) {
       return sunny;
     } else {
       return lightening;
@@ -69,7 +73,7 @@ function WeatherPrediction() {
   };
   const filterForecasts = (forecasts) => {
     // Filter forecasts to include only those that occur at 6-hour intervals
-    return forecasts.filter((forecast, index) => index % 6 === 0);
+    return forecasts.filter((forecast, index) => index % 6 * 3 === 0);
   };
 
   return (
@@ -100,15 +104,14 @@ function WeatherPrediction() {
                 )
               )}
             </div>
-          
           </div>
         ) : (
           <>
-          <Lottie 
-          options={defaultOptions}
-            style={{height: "90%", width: "100%"}}
-          />
-          <p style={{textAlign:"center"}}>Loading..</p>
+            <Lottie
+              options={defaultOptions}
+              style={{ height: "90%", width: "100%" }}
+            />
+            <p style={{ textAlign: "center" }}>Loading..</p>
           </>
         )}
       </div>

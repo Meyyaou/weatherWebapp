@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import moon from "../assets/moon.svg";
-import sunny from "../assets/sunny.svg";
-import cloudy from "../assets/cloudy.svg";
-import lightening from "../assets/lightening.svg";
+import sunnyCloudy from "../assets/sun&cloud.png";
+import sunny from "../assets/sun.png";
+import cloudy from "../assets/clouud.png";
+import lightening from "../assets/lightening.png";
+import rain from "../assets/rain.png";
 const Weather = ({ city }) => {
   const [weatherData, setWeatherData] = useState(null);
   const [icon, setIcon] = useState(null);
@@ -17,12 +18,14 @@ const Weather = ({ city }) => {
         );
 
         setWeatherData(response.data);
-        const temp = response.data.main.temp;
-        if (temp < 10) {
-          setIcon(moon);
-        } else if (temp >= 10 && temp < 20) {
+        const temp =response.data.main.temp;
+        if (temp <= 5) {
+          setIcon(rain);
+        } else if (temp >= 10 && temp < 15) {
           setIcon(cloudy);
-        } else if (temp >= 20 && temp < 30) {
+        } else if (temp >= 15 && temp <= 20) {
+          setIcon(sunnyCloudy);
+        }else if (temp > 20) {
           setIcon(sunny);
         } else {
           setIcon(lightening);
@@ -43,14 +46,15 @@ const Weather = ({ city }) => {
           <img
             src={icon}
             style={{
-              marginTop: 10,
-              marginBottom: 0,
-              height: "50px",
-              width: "50px",
+              position: "relative",
+              top: "10%",
+              height: "70px",
+              width: "70px",
               cursor: "auto",
             }}
           />
           <h2 style={{fontSize: "1.6em"}}>{weatherData.name}</h2>
+
           <p>{weatherData.main.temp}°C</p>
         </>
       ) : (

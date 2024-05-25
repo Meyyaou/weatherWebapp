@@ -57,7 +57,7 @@
   }
   
   .gr-it:hover {
-    transform: rotate(5deg);
+    transform: scale(1.05);
     background-color: rgba(60, 125, 210, 0.518);
   }
   

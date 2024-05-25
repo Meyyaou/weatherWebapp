@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+ 
+import React, { useEffect, useState } from "react";
 import "./Mainpage.css";
 import InfoWidget from "./InfoWidget.jsx";
 import AdviceButton from "./AdviceButton.jsx";
@@ -10,7 +11,8 @@ import PredictCard from "./PredictCard.jsx";
 import GeneralAdvice from "./GeneralAdvice.jsx";
 import Greetings from "./Greetings.jsx";
 import SunhourWidget from "./SunhourWidget.jsx";
-import Test from "./Test.jsx";
+import AlertModal from "./AlertModal.jsx"; 
+
 function Mainpage({ user }) {
   const [userName, setUserName] = useState("");
   const [alertEnabled, setAlertEnabled] = useState(false);
@@ -28,20 +30,19 @@ function Mainpage({ user }) {
       setUserPassword(user.password);
     }
   }, [user]);
-
   const [dataAvailable, setDataAvailable] = useState(() => {
-    // Initialize from local storage or default to false
     return localStorage.getItem("dataAvailable") === "true";
   });
 
   const toggleDataAvailability = () => {
     setDataAvailable(true);
-    localStorage.setItem("dataAvailable", "true"); // Store in local storage
+    localStorage.setItem("dataAvailable", "true");
   };
+
+
   
   return (
     <div>
-      {" "}
       <Greetings user={user} />
       {!dataAvailable && <DisplayBluetooth toggleDataAvailability={toggleDataAvailability} />}
       {dataAvailable && (
@@ -56,24 +57,23 @@ function Mainpage({ user }) {
               pressure="9"
             />
           </main>
-        </div>)}
-       {dataAvailable && (
+        </div>
+      )}
+      {dataAvailable && (
         <>
-      <InfoWidget />
-      <SunhourWidget />
-      <div className="blank-bloc"></div>
-      <GeneralAdvice />
-      <div className="second-part-page">
-        <AroundConstantine />
-
-        <PredictCard />
-      
-      </div></>)}
+          <InfoWidget />
+          <SunhourWidget />
+          <div className="blank-bloc"></div>
+          <GeneralAdvice />
+          <div className="second-part-page">
+            <AroundConstantine />
+            <PredictCard />
+          </div>
+        </>
+      )}
+      <AlertModal user={user} /> 
     </div>
   );
 }
 
 export default Mainpage;
-/**   */
-/**
- */

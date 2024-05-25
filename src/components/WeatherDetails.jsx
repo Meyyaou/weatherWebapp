@@ -10,6 +10,20 @@ function WeatherDetails({ typeData }) {
     const[humidity, setHumidity]=useState(null);
     const[dewPoint, setDewPoint]=useState(null);
 
+    function calculateDewPoint(temperature, humidity) {
+        if (humidity <= 0 || humidity > 100) {
+            console.error("Humidity should be between 0 and 100 (exclusive of 0)");
+            return "?";
+        }
+    
+        const a = 17.625;
+        const b = 243.04;
+    
+        const alpha = Math.log(humidity / 100) + (a * temperature) / (b + temperature);
+        const dewPoint = (b * alpha) / (a - alpha);
+    
+        return Math.round(dewPoint);
+    }
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -19,11 +33,12 @@ function WeatherDetails({ typeData }) {
 
                 setWeatherData(response.data);
                 setFeelsLike(response.data.main.feels_like);
-                setVisibility(response.data.visibility);
+                setVisibility(response.data.visibility/1000);
                 setClouds(response.data.clouds.all);
+                console.log("clouds are : ", clouds)
                 setTemperature(response.data.main.temp);
                 setHumidity(response.data.main.humidity);
-                setDewPoint(Math.round(243.04 * (Math.log(humidity/100)+ 17.625*temperature/(243.04+temperature))/(17.625 - (Math.log(humidity/100)+ 17.625*temperature/(243.04+temperature)))));
+                setDewPoint(calculateDewPoint(temperature, humidity));
                 console.log(response.data);
             } catch (error) {
                 console.error(error);
@@ -36,10 +51,10 @@ function WeatherDetails({ typeData }) {
         <>
             {weatherData ? (
                 <>
-                    {typeData === "visibility" && <h3 style={{textAlign:"center"}}>{visibility} m</h3>}
+                    {typeData === "visibility" && <h3 style={{textAlign:"center"}}>{visibility} km</h3>}
                     {typeData === "feels_like" && <h3 style={{textAlign:"center"}}>{feelsLike} °C</h3>}
                     {typeData === "cloud" && <h3 style={{textAlign:"center"}}>{clouds} %</h3>}
-                    {typeData === "dew_point" && <h3 style={{textAlign:"center"}}>{dewPoint} %</h3>}
+                    {typeData === "dew_point" && <h3 style={{textAlign:"center"}}>{dewPoint} °C</h3>}
                 </>
             ) : (
                 <p style={{ fontSize: "0.5em" }}>Loading weather data...</p>
