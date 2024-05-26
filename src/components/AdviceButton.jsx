@@ -12,8 +12,7 @@ function AdviceButton({user, weatherState}) {
   const [popupButton, setPopupButton] = useState(false);
   const [selectedType, setSelectedType] = useState('');
   const [adviceWeather, setAdviceWeather]= useState("");
-
-   // weatherState="sunny";
+// weatherState="cloudy";
    // weatherState="rainy";
 
   useEffect(() => {

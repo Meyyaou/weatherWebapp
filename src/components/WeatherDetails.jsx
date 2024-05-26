@@ -20,7 +20,7 @@ function WeatherDetails({ typeData }) {
         const b = 243.04;
     
         const alpha = Math.log(humidity / 100) + (a * temperature) / (b + temperature);
-        const dewPoint = (b * alpha) / (a - alpha);
+        const dewPoint = 14//(b * alpha) / (a - alpha);
     
         return Math.round(dewPoint);
     }
