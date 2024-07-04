@@ -26,7 +26,7 @@ function WeatherPrediction() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/forecast?q=Constantine&appid=f9d03b6c3d397f80df6548977831724f&units=metric`
+          `https://api.openweathermap.org/data/2.5/forecast?q=Constantine&appid=XXXX&units=metric`
         );
         setPredictedWeatherData(response.data);
 
