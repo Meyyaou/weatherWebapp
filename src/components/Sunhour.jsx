@@ -13,7 +13,7 @@ function Sunhour({city}) {
         const fetchData = async () => {
           try {
             const response = await axios.post(
-              `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=3258acf3613370332f9694e6267b94a5`
+              `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=XXXX`
             );
     
             setWeatherData(response.data);
