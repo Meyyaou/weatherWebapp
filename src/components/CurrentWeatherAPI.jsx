@@ -8,7 +8,7 @@ const Weather = ({typeData}) => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?lat=36.3650&lon=6.6147&appid=3258acf3613370332f9694e6267b94a5
+        `https://api.openweathermap.org/data/2.5/weather?lat=36.3650&lon=6.6147&appid=XXXX
         `
       );
       
