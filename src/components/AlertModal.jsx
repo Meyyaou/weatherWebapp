@@ -26,7 +26,7 @@ const AlertModal = ({ user, alertEnabled }) => {
       const fetchWeatherData = async () => {
         try {
           const response = await axios.get(
-            `https://api.openweathermap.org/data/2.5/weather?lat=36.3650&lon=6.6147&appid=68302dbe8e1cd917f19ec87d0956d2b7&units=metric`
+            `https://api.openweathermap.org/data/2.5/weather?lat=36.3650&lon=6.6147&appid=XXXXXXX&units=metric`
           );
           const weatherData = response.data;
           const temp = weatherData.main.temp;
